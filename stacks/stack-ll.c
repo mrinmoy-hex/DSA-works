@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 struct Node {
     int value;
     struct Node *next;
@@ -61,7 +60,38 @@ int peek(struct Node *top, int pos) {
         printf("Empty Stack!\n");
         return -1;
     }
+    
+    struct Node *ptr = top;
+
+    for (int i = 0; (i < pos-1 && ptr != NULL); i++) {
+        ptr = ptr->next;
+    }
+
+    if (ptr != NULL) {
+        return ptr->value;
+    } else {
+        return -1;
+    }
+}
+
+int stackTop(struct Node *top) {
+    if (isEmpty(top)) {
+        return -1;
+    }
     return top->value;
+}
+
+
+int stackBottom(struct Node *top) {
+    if (isEmpty(top)) {
+        return -1;
+    }
+
+    struct Node *ptr = top;
+    while (ptr->next != NULL) {
+        ptr = ptr->next;
+    }
+    return ptr->value;
 }
 
 int main() {
@@ -90,6 +120,17 @@ int main() {
     } else {
         printf("The stack still has elements.\n");
     }
+
+    int peek_val = peek(top, 2);
+    printf("Peeked value: %d\n", peek_val);
+
+    for (int i = 1; i < 4; i++) {
+        printf("Value at position %d is : %d\n", i, peek(top, i));
+    }
+
+    printf("The top value of the stack: %d\n", stackTop(top));
+
+    printf("The last value of the stack: %d\n", stackBottom(top));
 
     return 0;
 }
