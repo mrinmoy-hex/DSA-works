@@ -57,7 +57,7 @@ void quickSort(int *arr, int low, int high)
     if (low < high)
     {
         partitionIndex = partition(arr, low, high);
-
+        printArr(arr, 7);
         quickSort(arr, low, partitionIndex - 1);  
         quickSort(arr, partitionIndex + 1, high);
     }
