@@ -57,7 +57,7 @@ void quickSort(int *arr, int low, int high)
     if (low < high)
     {
         partitionIndex = partition(arr, low, high);
-        printArr(arr, 7);
+        printArr(arr, 8);
         quickSort(arr, low, partitionIndex - 1);  
         quickSort(arr, partitionIndex + 1, high);
     }
@@ -65,8 +65,8 @@ void quickSort(int *arr, int low, int high)
 
 int main()
 {
-    int arr[] = {3, 5, 2, 13, 12, 3, 45};
-    int n = 7;
+    int arr[] = {3, 5, 2, 13, 12, 45, 11, 7};
+    int n = 8;
 
     printf("Array before sorting:\n");
     printArr(arr, n);
