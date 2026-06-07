@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+// Recursive approach
 typedef struct BstNode {
     int data;
     struct BstNode* left;
