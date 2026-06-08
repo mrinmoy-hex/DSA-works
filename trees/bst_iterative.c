@@ -17,17 +17,17 @@ BstNode *getNewNode(int data) {
     return newNode;
 }
 
-BstNode *root;
+
 
 BstNode* insert(BstNode *root, int data) {
     if (root == NULL) {
-        root = getNewNode(data);
+        return getNewNode(data);    // return immediately
     }
 
     BstNode *curr = root;
 
     while (true) {
-        if (data <= root->data) {
+        if (data <= curr->data) {
             if (curr->left == NULL) {
                 curr->left = getNewNode(data);  // found the spot
                 break;
@@ -88,9 +88,38 @@ int findMax(BstNode *root) {
     return curr->data;
 }
 
+int height(BstNode* root) {
+    if (root == NULL)   return -1;      // -1 for edges, use 0 if counting nodes 
 
+    int leftHeight = height(root->left);
+    int rightHeight = height(root->right);
+
+    return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
+}
+
+int depth(BstNode* root, int data) {
+    if (root == NULL) {
+        printf("Eroor: Empty tree.\n");
+        return -1;
+    }
+
+    BstNode* curr = root;
+    int depth = 0;
+
+    while (curr != NULL) {
+        if (curr->data == data)         return depth;
+        else if (data <= curr->data)    curr = curr->left;
+        else                            curr = curr->right;
+        depth++;
+    }
+
+    printf("%d not found in tree.\n", data);
+    return -1;
+}
 
 int main() {
+    BstNode *root = NULL;
+
     root = insert(root, 15);
     root = insert(root, 10);
     root = insert(root, 20);
@@ -104,6 +133,12 @@ int main() {
         printf("%d found in BST\n", key);
     else
         printf("%d not found in BST\n", key);
+
+
+    printf("Height of tree: %d\n", height(root));
+    printf("Depth of 40: %d\n", depth(root, 40));
+    printf("Depth of 15: %d\n", depth(root, 15));
+    printf("Depth of 10: %d\n", depth(root, 10));
 
 
     return 0;
