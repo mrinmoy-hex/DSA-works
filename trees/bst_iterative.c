@@ -58,6 +58,37 @@ bool search(BstNode* root, int data) {
     return false;
 }
 
+int findMin(BstNode *root) {
+    BstNode* curr = root;
+
+    if (root == NULL) {
+        printf("Error: Tree is empty.\n");
+        return -1;
+    }
+
+    while (curr->left != NULL) {
+        curr = curr->left;
+    }
+
+    return curr->data;
+}
+
+int findMax(BstNode *root) {
+    BstNode* curr = root;
+
+    if (root == NULL) {
+        printf("Error: Tree is empty.\n");
+        return -1;
+    }
+
+    while (curr->right != NULL) {
+        curr = curr->right;
+    }
+
+    return curr->data;
+}
+
+
 
 int main() {
     root = insert(root, 15);
